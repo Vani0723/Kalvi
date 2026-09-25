@@ -55,7 +55,7 @@ You need Windows 11 on Snapdragon (for example an HP OmniBook or EliteBook with 
 2. **Install Kalvi's dependencies.**
 
    ```bat
-   git clone https://github.com/<your-username>/kalvi.git
+   git clone https://github.com/Vani0723/kalvi.git
    cd kalvi
    py -3.11-arm64 -m venv .venv
    .venv\Scripts\activate

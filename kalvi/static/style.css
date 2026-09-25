@@ -1,0 +1,171 @@
+:root {
+  --ink: #0f3d3e;
+  --ink-soft: #1f5c5d;
+  --saffron: #f2a541;
+  --saffron-dark: #c97f17;
+  --mint: #dcefea;
+  --bg: #f6faf9;
+  --surface: #ffffff;
+  --text: #1b2b2b;
+  --muted: #5b6b6b;
+  --line: #d5e4e0;
+  --danger: #b3261e;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1c1d;
+    --surface: #102a2b;
+    --text: #e6f1ee;
+    --muted: #9db3ae;
+    --line: #1e4344;
+    --mint: #163a3b;
+    --ink-soft: #7fc4b6;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+h1, h2, h3 { font-family: Cambria, Georgia, serif; margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+.muted { color: var(--muted); }
+
+/* Top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px 24px; background: #0f3d3e; color: #fff;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--saffron); color: #0f3d3e;
+}
+.brand h1 { font-size: 22px; line-height: 1.1; }
+.tagline { margin: 0; font-size: 13px; color: #cfe7e1; font-style: italic; }
+.top-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.lang { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cfe7e1; }
+.lang select {
+  background: #1f5c5d; color: #fff; border: 1px solid #2f7475; border-radius: 8px; padding: 6px 10px;
+}
+.device-badge {
+  display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+  background: #1f5c5d; font-size: 13px; font-weight: 600;
+}
+.device-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: #9db3ae; }
+.device-badge.npu .dot { background: #4cd48a; box-shadow: 0 0 0 3px rgba(76, 212, 138, .25); }
+.device-badge.cpu .dot, .device-badge.mock .dot { background: var(--saffron); }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 64px); }
+.sidebar {
+  background: var(--surface); border-right: 1px solid var(--line); padding: 20px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.content { padding: 28px 32px; max-width: 980px; width: 100%; }
+.side-title { font-size: 15px; margin-top: 14px; color: var(--muted); font-family: inherit; font-weight: 600; }
+.privacy { margin-top: auto; font-size: 12px; color: var(--muted); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+  border-radius: 10px; padding: 10px 14px; border: 1px solid transparent; font-weight: 600;
+}
+.btn.wide { width: 100%; }
+.btn.primary { background: var(--ink); color: #fff; }
+.btn.primary:hover { background: #164f50; }
+.btn.ghost { background: transparent; border-color: var(--line); }
+.btn.ghost:hover { background: var(--mint); }
+.btn.danger { color: var(--danger); }
+
+.lecture-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; }
+.lecture-list li button {
+  width: 100%; text-align: left; background: none; border: 0; border-radius: 10px; padding: 9px 10px; cursor: pointer;
+}
+.lecture-list li button:hover, .lecture-list li button.active { background: var(--mint); }
+.lecture-list .l-title { display: block; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lecture-list .l-meta { display: block; font-size: 12px; color: var(--muted); }
+.lecture-list .empty { color: var(--muted); font-size: 13px; padding: 6px 10px; }
+
+/* Live view */
+.live-head { display: flex; flex-direction: column; gap: 10px; }
+.title-input {
+  font-family: Cambria, Georgia, serif; font-size: 26px; font-weight: 700; border: 0; border-bottom: 2px solid transparent;
+  background: transparent; padding: 4px 0; outline: none;
+}
+.title-input:focus { border-bottom-color: var(--saffron); }
+.live-meta { display: flex; align-items: center; gap: 14px; }
+.timer { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 18px; min-width: 64px; }
+.meter { flex: 0 1 220px; height: 8px; border-radius: 999px; background: var(--mint); overflow: hidden; }
+#meter-fill { height: 100%; width: 0; background: var(--saffron); transition: width .12s linear; }
+.speaking { font-size: 13px; color: var(--muted); }
+.speaking.on { color: var(--ink-soft); font-weight: 600; }
+
+.record-row { display: flex; align-items: center; gap: 18px; margin: 22px 0; }
+.record-btn {
+  width: 78px; height: 78px; border-radius: 50%; border: 0; cursor: pointer; flex: none;
+  background: var(--ink); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(15, 61, 62, .25);
+}
+.record-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--saffron); transition: all .2s; }
+.record-btn.recording { background: var(--danger); animation: pulse 1.6s infinite; }
+.record-btn.recording .record-icon { border-radius: 6px; background: #fff; width: 24px; height: 24px; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(179, 38, 30, .35); } 50% { box-shadow: 0 0 0 14px rgba(179, 38, 30, 0); } }
+.record-hint { margin: 0; font-weight: 600; font-size: 16px; }
+.record-sub { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+.captions {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 8px 18px; min-height: 240px; max-height: 50vh; overflow-y: auto;
+}
+.captions:empty::before { content: "Live captions will appear here."; display: block; color: var(--muted); padding: 16px 0; }
+.caption { display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.caption:last-child { border-bottom: 0; }
+.caption .ts { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-weight: 700; font-size: 13px; padding-top: 2px; }
+.caption .text { font-size: 17px; }
+.caption .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.caption.pending .text { color: var(--muted); font-style: italic; }
+
+.bench-card { margin-top: 22px; background: var(--mint); border-radius: var(--radius); padding: 16px 20px; }
+.bench-card h3 { font-size: 17px; margin-bottom: 8px; }
+.bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat .v { font-family: Cambria, Georgia, serif; font-size: 26px; font-weight: 700; color: var(--ink-soft); }
+.stat .l { font-size: 12px; color: var(--muted); }
+
+/* Lecture view */
+.lecture-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.lecture-head h2 { font-size: 26px; }
+#player { width: 100%; margin: 18px 0 12px; }
+.search-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.search-row input {
+  flex: 1; max-width: 420px; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface);
+}
+.import-status { background: var(--mint); border-radius: 10px; padding: 8px 12px; font-size: 13px; }
+.transcript { list-style: none; margin: 0; padding: 0; }
+.transcript li {
+  display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 10px 12px; border-radius: 10px; cursor: pointer;
+}
+.transcript li:hover { background: var(--mint); }
+.transcript li.playing { background: var(--mint); box-shadow: inset 3px 0 0 var(--saffron); }
+.transcript li.hidden { display: none; }
+.transcript .ts { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-weight: 700; font-size: 13px; padding-top: 2px; }
+.transcript mark { background: var(--saffron); color: #1b2b2b; border-radius: 3px; padding: 0 2px; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1b2b2b; color: #fff;
+  padding: 10px 16px; border-radius: 10px; font-size: 14px; max-width: 90vw; box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: 0; border-bottom: 1px solid var(--line); }
+  .content { padding: 20px 16px; }
+  .topbar { flex-wrap: wrap; padding: 12px 16px; }
+}

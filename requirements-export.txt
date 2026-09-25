@@ -1,0 +1,6 @@
+# Only needed to export the CPU baseline model (scripts/export_cpu_baseline.py).
+# Install in an x64 Python: Qualcomm's qai_hub_models package does not support Windows ARM64 Python.
+qai_hub_models[whisper-base]
+torch
+onnx
+transformers

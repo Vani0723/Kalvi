@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8
+httpx>=0.27
+onnx>=1.16          # tests build small fake Whisper models
+transformers        # optional: checks our mel features against Hugging Face's

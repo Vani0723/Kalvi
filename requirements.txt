@@ -1,0 +1,20 @@
+# Kalvi runtime dependencies (install in native Windows ARM64 Python on the Snapdragon PC).
+# On Windows ARM64 the QNN build of ONNX Runtime provides the Hexagon NPU execution provider;
+# everywhere else the standard CPU build is used.
+onnxruntime-qnn>=1.22; sys_platform == "win32" and platform_machine == "ARM64"
+onnxruntime>=1.20; sys_platform != "win32" or platform_machine != "ARM64"
+
+numpy>=1.26
+scipy>=1.13          # optional: better audio resampling; Kalvi falls back to NumPy without it
+tokenizers>=0.19
+soundfile>=0.12
+sounddevice>=0.4.6
+fastapi>=0.110
+uvicorn>=0.29
+websockets>=12
+python-multipart>=0.0.9
+psutil>=5.9          # optional: battery measurement in benchmarks
+
+# Model download helpers (pure Python)
+qai_hub_models_cli
+huggingface_hub>=0.23

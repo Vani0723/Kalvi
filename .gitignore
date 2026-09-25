@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Large or private files: models are downloaded, lectures stay on the device
+models/*/
+!models/README.md
+data/
+*.wav
+*.flac
